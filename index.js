@@ -1,39 +1,99 @@
-//Practica 2 en JS
+//Practica 3 en JS
 
-//Comparaciones y decisiones
+//Arreglos y ciclos
 
-/*Crea un programa en JavaScript que evalúe la nota de un estudiante y genere un mensaje personalizado basado en la nota. Las notas se asignan de la siguiente manera:
+//Ejemplo de un ciclo while
+let contador = 0;
 
-Si la nota es 90 o más, el estudiante aprueba con "Excelente".
-Si la nota está entre 75 y 89, el estudiante aprueba con "Bien".
-Si la nota está entre 60 y 74, el estudiante aprueba con "Suficiente".
-Si la nota es menor de 60, el estudiante no aprueba.
-Instrucciones (pistas) para resolver el problema:
-Declara una variable llamada nota y asígnale un valor numérico entre 0 y 100.Puede ser un valor aleatorio (opcional).
-Usa una condición if para verificar si el valor de nota es mayor que 0 (truthy).
-Utiliza operadores de comparación (<,>, <=, >=) para determinar el rango de la nota.
-Imprime en la consola un mensaje que indique la nota que obtuvo el alumno.
-Adicionalmente - Prueba diferentes valores para la variable nota (por ejemplo, 45, 60, 75, 0) para ver cómo cambia el resultado. 
-*/
+while (contador < 5) {
 
-let nota = Math.floor(Math.random() * 101);
+    console.log(contador);
+    
+    contador++;
 
-if (nota === 0) {
-    //Para asegurarme que el resultado nunca sea 0
-    console.log(`Tu desempeño fué: No aprobatorio`);
-    console.log(`Tu nota es: ${nota + 1}`); 
-} else if (nota <= 60) {
-    console.log(`Tu calificación fué: No aprobatoria`);
-    console.log(`Tu nota es: ${nota}`);
-} else if (nota <= 74) {
-    console.log(`Tu desempeño fué: Suficiente`);
-    console.log(`Tu nota es: ${nota}`);
-} else if (nota <= 89) {
-    console.log(`Tu desempeño fué: Bueno`);
-    console.log(`Tu nota es: ${nota}`);
-} else {
-    console.log(`¡Felicidades! Tu desempeño fué: Excelente`);
-    console.log(`Tu nota es: ${nota}`);
 }
 
+//Ejemplo de un ciclo for
+
+let suma = 0;
+
+for (let i = 1; i <= 10; i++) {
+
+    suma += i;
+
+}
+
+console.log(suma);
+
+//Ejemplo de un array
+
+let numeros = [1, 2, 3, 4, 5]; 
+
+//Ejercicio de clase
+//FizzBuzz
+//Es un ejercicio clásico de la programación que ayuda a mejorar el pensamiento lógico y la estructura de los bucles condicionales.
+//La tarea consiste en escribir un programa en JS que recorra los número del 1 al 100 y siga las siguientes reglas
+//Si un número es múltiplo de 3, imprime Fizz
+//Si un número es múltiplo de 5, imprime Buzz
+//Si un número es múltiplo de 3 y 5 imprime FizzBuzz
+//Si un número no es múltiplo de 3 o 5, simplemente imprime el número
+
+for(let index = 1; index <= 100; index ++) {
+    if (index%3 === 0 && index%5 ===0) {
+        console.log('FizzBuzz')
+    }
+    else if (index%3 === 0) {
+        console.log('Fizz')
+    }
+    else if (index%5 === 0) {
+        console.log('Buzz');
+        
+    }
+    else {
+    console.log(index);
+    }
+}
+
+
+//Ejercicio de Campus
+/*
+Problema: Clasificación de Frutas
+Imagina que tienes un programa que clasifica las frutas según su tipo y cuenta cuántas hay de cada tipo.
+
+Instrucciones para resolver el problema:
+Declara un arreglo llamado frutas con varios tipos de frutas.
+Crea un objeto para almacenar la cantidad de cada tipo de fruta.
+Usa un ciclo for para recorrer el arreglo y contar las frutas.
+Imprime en la consola la cantidad de cada tipo de fruta.
+Implementar otra solución con el ciclo while.
+ */
+
+const frutas = ['manzana', 'banana', 'naranja', 'manzana', 'naranja', 'banana', 'manzana', 'uva', 'naranja', 'banana'];
+
+const contadorFrutas = {};
+
+for (let index = 0; index < frutas.length; index++) {
+    const fruta = frutas[index];
+    if (contadorFrutas[fruta]) {
+        contadorFrutas[fruta]++;
+    } else {
+        contadorFrutas [fruta] = 1;
+    }
+}
+
+const conteoFrutas = {};
+
+let i = 0;
+while (i < frutas.length) {
+    const fruta = frutas[i];
+    if (conteoFrutas[fruta]) {
+        conteoFrutas[fruta]++;
+    } else {
+        conteoFrutas [fruta] = 1;
+    }
+    i ++;
+}
+
+console.log(contadorFrutas);
+console.log(conteoFrutas);
 
