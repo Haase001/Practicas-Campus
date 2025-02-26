@@ -22,20 +22,18 @@ if (nota === 0) {
     //Para asegurarme que el resultado nunca sea 0
     console.log(`Tu desempeño fué: No aprobatorio`);
     console.log(`Tu nota es: ${nota + 1}`); 
+} else if (nota <= 60) {
+    console.log(`Tu calificación fué: No aprobatoria`);
+    console.log(`Tu nota es: ${nota}`);
+} else if (nota <= 74) {
+    console.log(`Tu desempeño fué: Suficiente`);
+    console.log(`Tu nota es: ${nota}`);
+} else if (nota <= 89) {
+    console.log(`Tu desempeño fué: Bueno`);
+    console.log(`Tu nota es: ${nota}`);
 } else {
-    if (nota <= 60) {
-        console.log(`Tu calificación fué: No aprobatoria`);
-        console.log(`Tu nota es: ${nota}`);
-    } else if (nota <= 74) {
-        console.log(`Tu desempeño fué: Suficiente`);
-        console.log(`Tu nota es: ${nota}`);
-    } else if (nota <= 89) {
-        console.log(`Tu desempeño fué: Bueno`);
-        console.log(`Tu nota es: ${nota}`);
-    } else {
-        console.log(`¡Felicidades! Tu desempeño fué: Excelente`);
-        console.log(`Tu nota es: ${nota}`);
-    }
+    console.log(`¡Felicidades! Tu desempeño fué: Excelente`);
+    console.log(`Tu nota es: ${nota}`);
 }
 
 
