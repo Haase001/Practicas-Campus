@@ -69,9 +69,10 @@ const agregarLibro = function () {
         listadecapitulos: listadecapitulos,
         add: add,
     }
+    
     //Agregamos a la libreria
-    libreria.push(nuevolibro)
     console.log('Libro agregado:', nuevolibro.titulo);
+    return libreria.push(nuevolibro);
 }
 
 const nuevaBusqueda = function () {
