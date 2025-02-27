@@ -1,99 +1,55 @@
-//Practica 3 en JS
+//Practica 4 en JS
 
-//Arreglos y ciclos
+//Funciones
 
-//Ejemplo de un ciclo while
-let contador = 0;
-
-while (contador < 5) {
-
-    console.log(contador);
-    
-    contador++;
-
-}
-
-//Ejemplo de un ciclo for
-
-let suma = 0;
-
-for (let i = 1; i <= 10; i++) {
-
-    suma += i;
-
-}
-
-console.log(suma);
-
-//Ejemplo de un array
-
-let numeros = [1, 2, 3, 4, 5]; 
-
-//Ejercicio de clase
-//FizzBuzz
-//Es un ejercicio clásico de la programación que ayuda a mejorar el pensamiento lógico y la estructura de los bucles condicionales.
-//La tarea consiste en escribir un programa en JS que recorra los número del 1 al 100 y siga las siguientes reglas
-//Si un número es múltiplo de 3, imprime Fizz
-//Si un número es múltiplo de 5, imprime Buzz
-//Si un número es múltiplo de 3 y 5 imprime FizzBuzz
-//Si un número no es múltiplo de 3 o 5, simplemente imprime el número
-
-for(let index = 1; index <= 100; index ++) {
-    if (index%3 === 0 && index%5 ===0) {
-        console.log('FizzBuzz')
-    }
-    else if (index%3 === 0) {
-        console.log('Fizz')
-    }
-    else if (index%5 === 0) {
-        console.log('Buzz');
-        
-    }
-    else {
-    console.log(index);
-    }
-}
-
-
-//Ejercicio de Campus
 /*
-Problema: Clasificación de Frutas
-Imagina que tienes un programa que clasifica las frutas según su tipo y cuenta cuántas hay de cada tipo.
+Problema: Seguimiento de Libros
+Crea un sistema muy sencillo para hacer seguimiento de los libros que has leído.
 
 Instrucciones para resolver el problema:
-Declara un arreglo llamado frutas con varios tipos de frutas.
-Crea un objeto para almacenar la cantidad de cada tipo de fruta.
-Usa un ciclo for para recorrer el arreglo y contar las frutas.
-Imprime en la consola la cantidad de cada tipo de fruta.
-Implementar otra solución con el ciclo while.
- */
+Define una función `agregarLibro(titulo)`, que añada un libro a un array llamado `librosLeidos`.
+Define una función `mostrarLibrosLeidos()`, que imprima todos los libros que has leído.
+*/
 
-const frutas = ['manzana', 'banana', 'naranja', 'manzana', 'naranja', 'banana', 'manzana', 'uva', 'naranja', 'banana'];
+const librosLeidos= [];
 
-const contadorFrutas = {};
+//Uso un prompt para hacerlo mas interactivo
+let libros = prompt('Ingresa el nombre de un libro que hayas leido')
 
-for (let index = 0; index < frutas.length; index++) {
-    const fruta = frutas[index];
-    if (contadorFrutas[fruta]) {
-        contadorFrutas[fruta]++;
-    } else {
-        contadorFrutas [fruta] = 1;
+function agregarLibro (titulo) {
+    
+    //Usaré un while ya que no se cuantos libros ingresará el usuario 
+
+    while (titulo) { 
+    
+        librosLeidos.push(titulo)
+        
+        //Cambio el valor de titulo con otro prompt y agrego una instruccion para que el usuario termine el bucle
+        titulo = prompt('Ingresa el nombre de otro libro que hayas leido,si te quedas sin titulos o te cansas, deja la casilla en blanco')
+    
+        //Un extra que valide si repetimos un titulo
+        for (let index = 0; index < librosLeidos.length; index++) {
+            
+            if (titulo === librosLeidos[index]) {
+                
+                titulo = prompt('Ya incluiste ese libro, escribe otro título, o si ya no tienes mas títulos, dejalo en blanco')
+            }
+            
+        }
+    
     }
+
 }
 
-const conteoFrutas = {};
+agregarLibro (libros)
 
-let i = 0;
-while (i < frutas.length) {
-    const fruta = frutas[i];
-    if (conteoFrutas[fruta]) {
-        conteoFrutas[fruta]++;
-    } else {
-        conteoFrutas [fruta] = 1;
-    }
-    i ++;
+//La siguiente funcion mostrará una lista de los titulos leidos que hayan ingresado
+
+function mostrarLibrosLeidos () {
+    console.log(`Los libros que has leído son:`);
+    librosLeidos.forEach((libro, index) => {
+        console.log(`${index+ 1}. ${libro}`);
+    })
 }
 
-console.log(contadorFrutas);
-console.log(conteoFrutas);
-
+mostrarLibrosLeidos ()
