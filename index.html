@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f50bcbfe34.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles.css">
     <title>Campus</title>
 </head>
 <body>
-    <h1>Hola Mundo!</h1>
+    <div class="container">
+        <h1>Deja tu comentario</h1>
+        <form id="form" class="comment-form">
+            <input id="author-input" type="text" placeholder="Tu nombre o nickname">
+            <textarea id="comment-input" placeholder="Escribe tu comentario aquí..." required></textarea>
+            <button type="submit">Enviar comentario</button>
+        </form>
+
+        <div id="comments-box">
+            <!-- Algo asi quedarán los comentarios -->
+            <!--
+            <div class="comment">
+                <div class="person-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="comment-content">
+                    <p class="comment-author">Usuario1</p>
+                    <p>¡Este es un comentario de ejemplo!</p>
+                    <small>10/10/2023 14:30</small>
+                </div>
+                <button type="button" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            -->
+        </div>
+    </div>
     <script src="./index.js"></script>
 </body>
 </html>

@@ -1,146 +1,96 @@
-//Practica 5 en JS
+//Practica 6 en JS
 
-//Objetos
-
-//Ejercicio de Campus para practicar
+//Intro a DOM
 /*
-Crear un objeto "auto" con propiedades como marca, modelo, año, y un método mostrarInfo que imprima la información del auto.
-*/
-
-const auto = {
-    marca: 'Ford',
-    modelo: 'Mustang',
-    color: 'negro',
-
-    //Método para mostrar la información
-    mostrarinfo: function () {
-        return `El auto es de la marca ${this.marca}, modelo ${this.modelo}, y lo tenemos disponible en color ${this.color}`
-    }
-}
-
-console.log(auto.mostrarinfo());
-
-//Ejercicio
-/*
-Problema: Crear objeto a partir de un Libro
-Crear un objeto libro que contenga varias propiedades y un método para imprimir la información básica del libro.
+Problema: Caja de Comentarios (Simple Comment Box)
+Crear una caja de comentarios donde los usuarios puedan escribir y agregar comentarios que se muestran en la página. Este proyecto ayudará a los estudiantes a manejar eventos de formularios y modificar el contenido de una página.
 
 Instrucciones para resolver el problema:
-Cada libro debe ser un objeto con las siguientes propiedades: titulo: (string) el título del libro, autor: (string) el autor del libro, anio: (number) el año de publicación, estado: (string) el estado del libro, que puede ser 'disponible' o 'prestado'.
-También debe tener un método describirLibro: (method) método para imprimir la información básica del libro. Algo como 'Libro titulado [titulo], escrito por [autor] en el año [anio], el estado es: [estado].'
-Opcional: agregar una propiedad que contenga la lista de capítulos del libro y métodos que permitan agregar y eliminar capítulos del libro.
- */
+Crea una página con un formulario que tenga un campo de texto para el comentario y un botón para agregarlo.
+Cuando el usuario haga clic en el botón, el comentario debe aparecer en la página debajo del formulario.
+Los estudiantes pueden agregar un botón para eliminar comentarios si lo desean.
+Los comentarios deben aparecer junto con la fecha y hora de publicación. (opcional)
+*/
 
-const informacion = function () {
+const newComment = document.getElementById('form');
+const commentSection = document.getElementById('comments-box');
 
-    return `Libro: ${this.titulo} de ${this.autor} publicado en ${this.publicacion}. Actualmente el libro se encuentra: ${this.estado}`;
+function DeleteComments (button, comment) {
+    button.addEventListener ('click', () => {
+        comment.remove ();
+    })
 };
 
-const listarcapitulos = function () {
-    console.log('Capitulos de', this.titulo,':');
-    this.capitulos.forEach((capitulo, index) => {
-        console.log(`${index+ 1}. ${capitulo}`);
-    });
-}
+function createNewComment (author, comment) {
+    newComment.reset();
 
-const agregarCapitulo = function (nuevoCapitulo) {
-    this.capitulos.push(nuevoCapitulo)
-    console.log(`Nuevo capítulo ${nuevoCapitulo} agregado.`);
-    console.log(this.listadecapitulos());
+    //Crear un nuevo elemento
+    const comments = document.createElement('div');
+    comments.classList.add ('comment');
+
+    //Crear imagen de usuario, o en este caso el icono de usuario jeje 
+    const commenticon = document.createElement ('div');
+    commenticon.classList.add ('person-icon');
+
+    //Agregamos el icono
+    const icon = document.createElement ('i');
+    icon.classList.add ('fa-solid', 'fa-user');
+    commenticon.appendChild (icon) //metemos el icono en commenticon
+
+    //Agregamos el espacio para comentarios
+    const commentContent = document.createElement ('div');
+    commentContent.classList.add ('comment-content');
+
+    //Creamos el nombre de usuario
+    const commentUsername = document.createElement ('p');
+    commentUsername.classList.add('comment-author');
+    commentUsername.textContent = author || 'Anonimo'; //No sabía que tambien se podían usar estos operadores aqui, pero tiene sentido
+    commentContent.appendChild (commentUsername); //Metemos el nombre de usuario en commentContent
+
+    //Creamos el comentario
+    const commentText = document.createElement ('p');
+    commentText.textContent= comment;
+    commentContent.appendChild (commentText); //Metemos el comentario en commentContent
+
+    //obtener la fecha
+    let fecha = new Date();
+    const opcionesDeFecha = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    }
+    const fechaFormateada = fecha.toLocaleString('es-Es', opcionesDeFecha);
+
+    //Agregar la fecha a una etiqueta
+    const commentDate = document.createElement ('small');
+    commentDate.textContent = fechaFormateada;
+    commentContent.appendChild (commentDate); //metemos la fecha en commentContent
+
+    //Creamos el botón
+    const commentBtn = document.createElement ('button');
+    commentBtn.classList.add ('delete-btn');
+    commentBtn.setAttribute ('type', 'button');
+
+    //Creamos el icono de la basura
+    const trashicon = document.createElement ('i');
+    trashicon.classList.add ('fa-solid', 'fa-trash');
+    commentBtn.appendChild (trashicon); //Metemos el icono en el boton
+
+    DeleteComments (commentBtn, comments);
+
+    comments.appendChild (commenticon)
+    comments.appendChild (commentContent)
+    comments.appendChild (commentBtn)
+
+    commentSection.appendChild (comments)
+    console.log(author, comment);
 };
 
-const agregarLibro = function () {
-    //Agregamos un libro por medio de prompts
-    let titulo = prompt("Ingresa el título del libro:");
-    let autor = prompt("Ingresa el autor del libro:");
-    let publicacion = prompt("Ingresa el año de publicación del libro:")
-    let capitulos = [];
-    let mostrarinfo = informacion;
-    let listadecapitulos = listarcapitulos;
-    let add = agregarCapitulo;
-    // Creamos un nuevo objeto
-    let nuevolibro = {
-        titulo: titulo,
-        autor: autor,
-        publicacion: publicacion,
-        capitulos: capitulos,
-        estado: 'disponible',
-        mostrarinfo: mostrarinfo,
-        listadecapitulos: listadecapitulos,
-        add: add,
-    }
-    
-    //Agregamos a la libreria
-    console.log('Libro agregado:', nuevolibro.titulo);
-    return libreria.push(nuevolibro);
-}
-
-const nuevaBusqueda = function () {
-    const pregunta = prompt('Deseas hacer otra busqueda? si/no')
-    if (pregunta === 'si') {
-        librobuscado = prompt('Que libro estas buscando?')
-        Busqueda (librobuscado)
-    } else {
-        alert('Gracias por usar nuestra aplicación')
-    }
-}
-
-const libreria = [
-    {
-        titulo: 'El Principito',
-        autor: 'Antoine de Saint-Exupery',
-        publicacion: 1943,
-        capitulos: ['Introducción', 'El encuentro con el zorro', 'El asteroide B-612'],
-        estado: 'disponible',
-        mostrarinfo: informacion,
-        listadecapitulos: listarcapitulos,
-        add: agregarCapitulo,
-    }
-]
-
-let librobuscado = prompt('Que libro estas buscando?')
-
-function Busqueda (librobuscado) {
-    for (let index = 0; index < libreria.length; index++) {
-        if (librobuscado == libreria[index].titulo) {
-            console.log(libreria[index].mostrarinfo());
-            const listado = prompt('Deseas ver la lista de capítulos? si/no')
-            if (listado === 'si') {
-                console.log(libreria[index].listadecapitulos());
-                setTimeout(()=>{
-                    const preguntaListado = prompt('Estan todos los capítulos? si/no')
-                    if (preguntaListado === 'no') {
-                        let agregar = prompt('Escribe el siguiente capitulo que falta')
-                        while (agregar) {
-                            libreria[index].add(agregar)
-                            agregar = prompt('Ingresa otro capítulo, o deja en blanco si ya no quieres agregar más capitulos')
-                        }
-                        console.log('Gracias por tu apoyo!')
-                        nuevaBusqueda();
-                    } else {
-                        console.log('Gracias por tu apoyo!');
-                        nuevaBusqueda();
-                    }
-                    }, 10000
-                )
-                break; 
-            } else {
-                nuevaBusqueda();
-            }
-        } else {
-            alert('No encontramos el libro que buscas')
-            const nuevaEntrada = prompt('Deseas agregar un libro a nuestra base de datos? si / no')
-            if (nuevaEntrada === 'si') {
-                agregarLibro()
-                console.log('Gracias por tu apoyo');
-                nuevaBusqueda();
-                break;
-            } else {
-                nuevaBusqueda();
-            }
-        }
-        
-    }
-}
-
-Busqueda(librobuscado)
+newComment.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+    let author = document.getElementById('author-input').value.trim(); //Para que no aparezca en vacio el espacio si no ponen un Nombre
+    let comment = document.getElementById('comment-input').value; 
+    createNewComment(author, comment);
+});

@@ -46,7 +46,6 @@ h1 {
     border-radius: 4px;
     resize: none;
     font-size: 14px;
-    height: 80px;
 }
 
 .comment-form button {
@@ -59,14 +58,17 @@ h1 {
     font-size: 16px;
 }
 
-.comment-form button:hover {
+.comment-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.comment-form button:hover:not(:disabled) {
     background-color: #0056b3;
 }
 
 /* Estilos de la caja de comentarios */
-#comments-box {
-    display: flex;
-    flex-direction: column-reverse;
+.comments-box {
     margin-top: 20px;
     max-height: 300px;
     overflow-y: auto;
@@ -81,18 +83,21 @@ h1 {
     align-items: flex-start;
     gap: 10px;
     padding: 10px;
-    border: 1px solid #00000026;
-    margin-top: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+    border-bottom: none;
 }
 
 .person-icon {
-    text-align: center;
-    font-size: x-large;
-    color: #c8bdbdcc;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: #000000e3;
+    text-align: center;
+    font-size: x-large;
+    color: #c8bdbdcc;
 }
 
 .comment-content {
@@ -107,7 +112,7 @@ h1 {
 }
 
 .comment-content p {
-    margin: 0;
+    margin: 5px 0;
     font-size: 14px;
     color: #333;
 }
@@ -118,17 +123,13 @@ h1 {
 }
 
 .delete-btn {
-    height: 30px;
-    width: 30px;
-    text-align: center;
     background: none;
     border: none;
-    border-radius: 100%;
     cursor: pointer;
     font-size: 16px;
-    color: #ee8181;
+    color: #ff4d4d;
 }
 
 .delete-btn:hover {
-    color: red;
+    color: #cc0000;
 }
