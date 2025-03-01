@@ -15,12 +15,14 @@ Los comentarios deben aparecer junto con la fecha y hora de publicación. (opcio
 const newComment = document.getElementById('form');
 const commentSection = document.getElementById('comments-box');
 
+//Funcion para eliminar comentarios
 function DeleteComments (button, comment) {
     button.addEventListener ('click', () => {
         comment.remove ();
     })
 };
 
+//Funcion para crear elementos
 function createNewComment (author, comment) {
     newComment.reset();
 

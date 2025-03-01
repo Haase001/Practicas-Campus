@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: blueviolet;
+}
+
+.cnt{
+    margin: 25px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#titulo{
+    font-size: 50px;
+    color: blue;
+    text-align: center;
+}
+
+#boton{
+    font-size: large;
+    color: black;
+    width: 125px;
+    height: 50px;
+    border-radius: 15px;
+    border: black;
+    cursor: pointer;
+    background-color: bisque;
+}
