@@ -8,31 +8,33 @@
     <title>Campus</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Deja tu comentario</h1>
-        <form id="form" class="comment-form">
-            <input id="author-input" type="text" placeholder="Tu nombre o nickname">
-            <textarea id="comment-input" placeholder="Escribe tu comentario aquí..." required></textarea>
-            <button type="submit">Enviar comentario</button>
-        </form>
-
-        <div id="comments-box">
-            <!-- Algo asi quedarán los comentarios -->
-            <!--
-            <div class="comment">
-                <div class="person-icon">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                <div class="comment-content">
-                    <p class="comment-author">Usuario1</p>
-                    <p>¡Este es un comentario de ejemplo!</p>
-                    <small>10/10/2023 14:30</small>
-                </div>
-                <button type="button" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
-            </div>
-            -->
-        </div>
+    <h3>Generador de contraseñas</h3>
+    <div id="password-container">
+        <h2 id="password"></h2>
+        <span id="texto-copiado" class="hidden" >texto copiado</span>
+        <i class="fa-solid fa-copy" id="copy-icon" ></i>
     </div>
+    <main>
+        <div id="password-generator">
+            <div id="length-selection">
+                <span>Longitud</span>
+                <span id="number">10</span>
+            </div>
+            <!--El min y el max en el input tipo range determinan el valor inicial y final de la barra-->
+            <input type="range" class="slider" name="barra" id="barra" min="1" max="20" value="10">
+            <form id="options">
+                <p><input type="checkbox" name="uppercase-checkbox" id="uppercase-checkbox">Incluir letras mayúsculas</p>
+                <p><input type="checkbox" name="lowercase-checkbox" id="lowercase-checkbox">Incluir letras minúsculas</p>
+                <p><input type="checkbox" name="numbers-checkbox" id="numbers-checkbox">Incluir números</p>
+                <p><input type="checkbox" name="symbols-checkbox" id="symbols-checkbox">Incluir símbolos</p>
+            </form>
+            <div id="security-level">
+                <p id="security-text"></p>
+                <i class="fa-solid fa-shield-heart hidden" id="shield"></i>
+            </div>
+            <button type="button" form="options" id="generate-button">Generar <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </main>
     <script src="./index.js"></script>
 </body>
 </html>

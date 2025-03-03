@@ -1,134 +1,138 @@
 /* Estilos generales */
+*{
+    box-sizing: border-box;
+    padding: 0;
+}
+
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #000000;
+    color: rgb(235, 221, 221);
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
 }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    max-width: 100%;
+input{
+    cursor: pointer;
+    background-color: #000000;
+    border: blue;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+body h3{
+    font-size: smaller;
+    color: #ffffff47;
 }
 
-/* Estilos del formulario */
-.comment-form {
+.hidden{
+    visibility: hidden;
+}
+
+main {
+    width: 70%;
+    background-color: rgba(17, 15, 15, 0.815);
+    padding: 4%;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+/*Estilos del contenedor de contraseñas*/
+div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
-.comment-form input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+#password-container{
+    background-color: rgba(17, 15, 15, 0.815);
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 50px;
+    margin-bottom: 20px;
+    max-width: 400px;
+    min-width: 300px;
+    padding: 0 2%;
 }
 
-.comment-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
-    font-size: 14px;
-    height: 80px;
+#password-container h2{
+    width: 70%;
+    font-size: small;
+    overflow-wrap: anywhere;
 }
 
-.comment-form button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+#copy-icon{
     cursor: pointer;
-    font-size: 16px;
+    color: blue;
+    position: relative;
 }
 
-.comment-form button:hover {
-    background-color: #0056b3;
+#copy-icon:hover{
+    color: rgba(0, 0, 255, 0.578);
 }
 
-/* Estilos de la caja de comentarios */
-#comments-box {
+#texto-copiado{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-small;
+    border-radius: 2px;
+    padding: 1px;
+    background-color: #2a2727;
+    position: relative;
+    left: 14%;
+    bottom: 40%;
+    color: rgb(100, 100, 134);
+}
+
+/*Estilo de las opciones*/
+#length-selection{
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#length-selection #number{
+    color: blue;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#options{
     display: flex;
-    flex-direction: column-reverse;
-    margin-top: 20px;
-    max-height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    background-color: #f9f9f9;
+    flex-direction: column;
+    margin: 10px 0;
 }
 
-.comment {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px;
-    border: 1px solid #00000026;
-    margin-top: 5px;
+#options input {
+    margin-right: 10px;
 }
 
-.person-icon {
-    text-align: center;
-    font-size: x-large;
-    color: #c8bdbdcc;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #000000e3;
+#security-level{
+    height: 50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: large;
+    background-color: black;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 0 20%;
 }
 
-.comment-content {
-    flex: 1;
+#security-level i{
+    font-size: xx-large;
 }
 
-.comment-content .comment-author {
-    margin: 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: #007bff;
-}
-
-.comment-content p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-}
-
-.comment-content small {
-    font-size: 12px;
-    color: #777;
-}
-
-.delete-btn {
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    background: none;
+/*Botón*/
+#generate-button{
+    height: 40px;
+    background-color: blue;
+    border-radius: 5px;
     border: none;
-    border-radius: 100%;
     cursor: pointer;
-    font-size: 16px;
-    color: #ee8181;
-}
-
-.delete-btn:hover {
-    color: red;
 }

@@ -1,98 +1,111 @@
-//Practica 6 en JS
+//Practica 7 en JS
 
-//Intro a DOM
+//Dominando el DOM
 /*
-Problema: Caja de Comentarios (Simple Comment Box)
-Crear una caja de comentarios donde los usuarios puedan escribir y agregar comentarios que se muestran en la página. Este proyecto ayudará a los estudiantes a manejar eventos de formularios y modificar el contenido de una página.
-
-Instrucciones para resolver el problema:
-Crea una página con un formulario que tenga un campo de texto para el comentario y un botón para agregarlo.
-Cuando el usuario haga clic en el botón, el comentario debe aparecer en la página debajo del formulario.
-Los estudiantes pueden agregar un botón para eliminar comentarios si lo desean.
-Los comentarios deben aparecer junto con la fecha y hora de publicación. (opcional)
+Problema: Generador de contraseñas
+El sitio debe ser capaz de generar una contraseña diferente de mas de 8 palabras usando simbolos, letras y numéros
+Imagina las diferentes opciones que puedes implementar en tu página
 */
 
-const newComment = document.getElementById('form');
-const commentSection = document.getElementById('comments-box');
+//Creamos el objeto con los valores a los que accesaremos despues
+const charactersOptions = {
+    numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+    lowercase: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+    uppercase: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    symbols: ['!', '#', '$', '%', '&', '/', '?', '*', '.', '_', '-'],
+}
 
-//Funcion para eliminar comentarios
-function DeleteComments (button, comment) {
-    button.addEventListener ('click', () => {
-        comment.remove ();
-    })
-};
+//Creamos las constantes que utilizaremos
+const generatedPass = document.getElementById('password');
+const copyIcon = document.getElementById('copy-icon')
+const inputcharacters = document.getElementById('number');
+const lengthBar = document.getElementById('barra'); 
+const checkUppercase = document.getElementById('uppercase-checkbox');
+const checkLowercase = document.getElementById('lowercase-checkbox');
+const checkNumbers = document.getElementById('numbers-checkbox');
+const checkSymbols = document.getElementById('symbols-checkbox');
+const securityLevelcolor = document.getElementById ('security-level')
+const securityShield = document.getElementById('shield');
+const securityText = document.getElementById('security-text');
+const button = document.getElementById('generate-button');
 
-//Funcion para crear elementos
-function createNewComment (author, comment) {
-    newComment.reset();
+//Sacamos el numero de caracteres de la barra
+lengthBar.addEventListener('input', () => {
+    inputcharacters.innerText = lengthBar.value;
+})
 
-    //Crear un nuevo elemento
-    const comments = document.createElement('div');
-    comments.classList.add ('comment');
+copyIcon.addEventListener('click', () => {
+    navigator.clipboard.writeText(generatedPass.innerHTML);
+    document.getElementById('texto-copiado').classList.remove('hidden')
+    setTimeout(() => {
+        document.getElementById('texto-copiado').classList.add('hidden')
+    }, 1500);
+})
 
-    //Crear imagen de usuario, o en este caso el icono de usuario jeje 
-    const commenticon = document.createElement ('div');
-    commenticon.classList.add ('person-icon');
+//Todo lo que va a pasar al apretar el boton
+button.addEventListener('click', () => {
+    //Usamos el valor de la barra para saber el tamaño de nuestra contraseña
+    let passlength = parseInt (lengthBar.value);
 
-    //Agregamos el icono
-    const icon = document.createElement ('i');
-    icon.classList.add ('fa-solid', 'fa-user');
-    commenticon.appendChild (icon) //metemos el icono en commenticon
+    //En estas variables guardamos los caracteres que vamos a usar y la contraseña que imprimiremos
+    let charactersToUse = [];
+    let password = '';
 
-    //Agregamos el espacio para comentarios
-    const commentContent = document.createElement ('div');
-    commentContent.classList.add ('comment-content');
+    //Creamos condiciones para pasar datos al arreglo de los characteres a usar
+    if (checkNumbers.checked === true) {
+        charactersToUse = charactersToUse.concat(charactersOptions.numbers); //Usamos .concat para juntar arreglos
+    };
 
-    //Creamos el nombre de usuario
-    const commentUsername = document.createElement ('p');
-    commentUsername.classList.add('comment-author');
-    commentUsername.textContent = author || 'Anonimo'; //No sabía que tambien se podían usar estos operadores aqui, pero tiene sentido
-    commentContent.appendChild (commentUsername); //Metemos el nombre de usuario en commentContent
+    if (checkLowercase.checked === true) {
+        charactersToUse = charactersToUse.concat(charactersOptions.lowercase);
+    };
 
-    //Creamos el comentario
-    const commentText = document.createElement ('p');
-    commentText.textContent= comment;
-    commentContent.appendChild (commentText); //Metemos el comentario en commentContent
+    if (checkUppercase.checked === true) {
+        charactersToUse = charactersToUse.concat(charactersOptions.uppercase);
+    };
 
-    //obtener la fecha
-    let fecha = new Date();
-    const opcionesDeFecha = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
+    if (checkSymbols.checked === true) {
+        charactersToUse = charactersToUse.concat(charactersOptions.symbols);
+    };
+
+    //Hacemos una condicion donde si no seleccionaron ninguna casilla, saldrá un alert diciendonos que seleccionemos al menos una casilla
+    if (checkNumbers.checked === true || checkLowercase.checked === true || checkUppercase.checked === true || checkSymbols.checked === true) {
+
+        //Hacemos un ciclo para elegir valores al azar del arreglo ya hecho con la cantidad de ciclos ingresada en passlenght
+        for (let index = 0; index < passlength; index++) {
+            
+            //A ver si tiene sentido
+            //Creamos la variable randomCharacter que va a tener el valor de el caracter dentro del arreglo characterToUse en la posicion del numero entero mas cercano (Math.floor) a la multiplicacion de un número aleatorio entre 0 y 1 (Math.random) multiplicado por la longitud del arreglo charactersToUse (charactersToUse.lenght) 
+            const randomCharacter = charactersToUse[Math.floor(Math.random()*charactersToUse.length)];
+            
+            //Agregamos el caracter resultante a la variable password
+            password += randomCharacter;
+        }
+        //Mostramos el icono de seguridad de la contraseña generada
+        securityShield.classList.remove('hidden');
+
+        //Validemos si que tan buena es la contraseña
+        if (passlength > 12 && (checkSymbols.checked === true || checkNumbers.checked === true) && (checkUppercase.checked === true || checkLowercase.checked === true)) {
+            securityLevelcolor.style.color = 'green';
+            securityText.innerText = 'Segura';
+        } else if (passlength > 8 && (checkSymbols.checked === true || checkNumbers.checked === true) && (checkUppercase.checked === true || checkLowercase.checked === true)) {
+            securityLevelcolor.style.color = '#de9323';
+            securityText.innerText = 'Seguridad media';
+        } else if (passlength < 8 || (checkSymbols.checked === false && checkNumbers.checked === false)) {
+            securityLevelcolor.style.color = 'red';
+            securityText.innerText = 'Poco segura';
+        } else {
+            securityLevelcolor.style.color = 'red';
+            securityText.innerText = 'Poco segura';
+        }
+    } else {
+        alert ('Debes seleccionar por lo menos una casilla')
+        securityText.innerText = '';
+        if (securityShield.classList.contains('hidden') === false) {
+            securityShield.classList.add ('hidden');
+        }
     }
-    const fechaFormateada = fecha.toLocaleString('es-Es', opcionesDeFecha);
 
-    //Agregar la fecha a una etiqueta
-    const commentDate = document.createElement ('small');
-    commentDate.textContent = fechaFormateada;
-    commentContent.appendChild (commentDate); //metemos la fecha en commentContent
-
-    //Creamos el botón
-    const commentBtn = document.createElement ('button');
-    commentBtn.classList.add ('delete-btn');
-    commentBtn.setAttribute ('type', 'button');
-
-    //Creamos el icono de la basura
-    const trashicon = document.createElement ('i');
-    trashicon.classList.add ('fa-solid', 'fa-trash');
-    commentBtn.appendChild (trashicon); //Metemos el icono en el boton
-
-    DeleteComments (commentBtn, comments);
-
-    comments.appendChild (commenticon)
-    comments.appendChild (commentContent)
-    comments.appendChild (commentBtn)
-
-    commentSection.appendChild (comments)
-    console.log(author, comment);
-};
-
-newComment.addEventListener('submit', (evento) => {
-    evento.preventDefault();
-    let author = document.getElementById('author-input').value.trim(); //Para que no aparezca en vacio el espacio si no ponen un Nombre
-    let comment = document.getElementById('comment-input').value; 
-    createNewComment(author, comment);
-});
+    //Imprimimos el valor de la password en la página
+    generatedPass.innerText = password;
+})
