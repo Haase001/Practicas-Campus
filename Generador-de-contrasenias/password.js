@@ -100,3 +100,9 @@ button.addEventListener('click', () => {
     //Imprimimos el valor de la password en la página
     generatedPass.innerText = password;
 })
+
+const Inicio = document.getElementById ('inicio');
+
+Inicio.addEventListener('click', () => {
+    window.location.href = '../index.html'
+})

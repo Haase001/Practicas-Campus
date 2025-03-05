@@ -31,3 +31,9 @@ color3.addEventListener('click', () =>{
         }
     asignarColores(element1, element2, element3)
 })
+
+const Inicio = document.getElementById ('inicio');
+
+Inicio.addEventListener('click', () => {
+    window.location.href = '../index.html'
+})

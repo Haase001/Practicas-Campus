@@ -143,3 +143,10 @@ newComment.addEventListener('submit', (evento) => {
         localStorage.setItem('comments', JSON.stringify(allComments))
     }
 });
+
+//Boton para regresar
+const Inicio = document.getElementById ('inicio');
+
+Inicio.addEventListener('click', () => {
+    window.location.href = '../index.html'
+})
